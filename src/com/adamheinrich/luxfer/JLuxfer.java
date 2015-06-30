@@ -47,7 +47,7 @@ public class JLuxfer extends JComponent {
     Point2D cornerPoints[];
     
     private Requester requester;
-    private String url = "http://luxvery.jan-husak.cz/homepage/getCells";
+    private String url;
 
     public JLuxfer() {
         MouseAdapter ma = new MyListener();

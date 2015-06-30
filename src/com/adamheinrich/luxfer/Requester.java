@@ -21,7 +21,8 @@ import org.json.JSONObject;
  * @author adam
  */
 public class Requester implements Runnable {
-
+    public static String DEFAULT_URL = "http://luxvery.jan-husak.cz/homepage/getCells";
+    
     private String prevJson = "";
 
     private static final Color[] COLORS = {
