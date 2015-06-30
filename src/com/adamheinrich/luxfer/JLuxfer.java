@@ -28,7 +28,6 @@ public class JLuxfer extends JComponent {
     private int currentEditedPoint = -1;
     private boolean drawEditMesh = true;
     
-    private boolean swapXY = false;
     private boolean mirrorX = false;
     private boolean mirrorY = false;
 
@@ -116,10 +115,6 @@ public class JLuxfer extends JComponent {
                                 drawEditMesh = !drawEditMesh;
                                 repaint();
                             }
-                            else if (c == 's') {
-                                swapXY = !swapXY;
-                                repaint();
-                            }
                         }
                     }
                 }
@@ -149,7 +144,6 @@ public class JLuxfer extends JComponent {
         requester.setUrl(url);
         requester.start();
 
-        swapXY = config.getBoolean("swapXY", swapXY);
         mirrorX = config.getBoolean("mirrorX", mirrorX);
         mirrorY = config.getBoolean("mirrorY", mirrorY);
         drawEditMesh = config.getBoolean("drawEditMesh", drawEditMesh);
@@ -187,7 +181,6 @@ public class JLuxfer extends JComponent {
     private void saveConfig() {
         config.setString("url", url);
         
-        config.setBoolean("swapXY", swapXY);
         config.setBoolean("mirrorX", mirrorX);
         config.setBoolean("mirrorY", mirrorY);
         config.setBoolean("drawEditMesh", drawEditMesh);
@@ -208,16 +201,7 @@ public class JLuxfer extends JComponent {
         config.save();
     }
 
-    public void updateColors() {
-        /*Random rand = new Random(System.currentTimeMillis());
-
-        for (int i = 0; i < matrix.getRowCount(); i++) {
-            for (int j = 0; j < matrix.getColumnCount(); j++) {
-                Color newColor = new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
-                matrix.getCell(i, j).setDesiredColor(newColor, animationStepsCount);
-            }
-        }*/
-        
+    public void updateColors() {        
         animationStep = 0;
         animationTimer.start();
         
@@ -304,14 +288,7 @@ public class JLuxfer extends JComponent {
                 int x = mirrorX ? getWidth() - me.getX() : me.getX();
                 int y = mirrorY ? getHeight() - me.getY() : me.getY();
                 
-                if (swapXY) {
-                    int tmp = x;
-                    x = y;
-                    y = tmp;
-                }
-                
                 cornerPoints[currentEditedPoint] = new Point2D.Double(x, y);
-
                 matrix.setCornerPoints(cornerPoints);
             }
 
