@@ -1,25 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.adamheinrich.luxfer;
 
 import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import javax.swing.SwingUtilities;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- *
- * @author adam
- */
 public class Requester implements Runnable {
     public static String DEFAULT_URL = "http://luxvery.jan-husak.cz/homepage/getCells";
     
@@ -78,20 +68,6 @@ public class Requester implements Runnable {
 
         prevJson = json;
 
-        //System.out.println(json);
-        /*int cellId = 0;
-         for (int i = 0; i < json.length(); i++) {
-         if (json.charAt(i) == '#' && i + 7 < json.length()) {
-         String color = json.substring(i, i + 7);
-         //System.out.println("Color: "+color);
-
-         //System.out.print(cellId+": ");
-         luxfer.setCell(cellId++, parseColor(color));
-         //System.out.println(color);
-         i += 7;
-         }
-         }*/
-        // System.out.println(json);
         JSONObject obj = new JSONObject(json);
         if (obj != null) {
             JSONObject selection = obj.getJSONObject("selection");
@@ -150,7 +126,6 @@ public class Requester implements Runnable {
             }
         }
 
-        //System.out.println("----------------");
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -161,27 +136,18 @@ public class Requester implements Runnable {
 
     void makeRequest() {
         try {
-            /* String urlParameters = "slice=1";
-             byte[] postData = urlParameters.getBytes(Charset.forName("UTF-8"));
-             int postDataLength = postData.length; */
             URL url = new URL(request);
             HttpURLConnection cox = (HttpURLConnection) url.openConnection();
             cox.setDoOutput(true);
             cox.setDoInput(true);
             cox.setInstanceFollowRedirects(false);
-            //cox.setRequestMethod("POST");
             cox.setRequestMethod("GET");
             cox.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             cox.setRequestProperty("charset", "utf-8");
-            //cox.setRequestProperty("Content-Length", Integer.toString(postDataLength));
             cox.setRequestProperty("Content-Length", "0");
             cox.setUseCaches(false);
             cox.setReadTimeout(800);
 
-            /*DataOutputStream wr = new DataOutputStream(cox.getOutputStream());
-             wr.write(postData);
-             wr.flush();
-             wr.close();*/
             int code = cox.getResponseCode();
             if (code == 200) {
 
@@ -194,7 +160,6 @@ public class Requester implements Runnable {
                 }
                 in.close();
 
-                //print result
                 parseData(response.toString());
             }
 
@@ -215,7 +180,6 @@ public class Requester implements Runnable {
             delay = Math.max(100, 500 - (int) time);
 
             try {
-                //System.out.println(delay);
                 Thread.sleep(delay);
             } catch (InterruptedException ex) {
             }

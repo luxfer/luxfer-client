@@ -5,10 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
 
-/**
- *
- * @author adam
- */
 public class Cell {
 
     private Color color;

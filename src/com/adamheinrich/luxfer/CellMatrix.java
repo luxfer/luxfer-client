@@ -59,8 +59,6 @@ public class CellMatrix {
 
         this.width = xMax;
         this.height = yMax;
-        
-        //setCornerPoints(cornerPointsOriginal);
     }
 
     public void setCornerPoints(Point2D[] cornerPoints) {
@@ -75,8 +73,6 @@ public class CellMatrix {
                 (float) cornerPoints[3].getX(),
                 (float) cornerPoints[3].getY()
         );
-        
-        //filter.setClip(true);
         
         this.cornerPoints = new Point2D[cornerPoints.length];
         for (int i = 0; i < cornerPoints.length; i++) {

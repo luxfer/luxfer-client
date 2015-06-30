@@ -140,7 +140,7 @@ public class JLuxfer extends JComponent {
     private void loadConfig() {
         config.load();
         
-        url = config.getString("url", url);
+        url = config.getString("url", Requester.DEFAULT_URL);
         
         requester.stop();
         requester.setUrl(url);
