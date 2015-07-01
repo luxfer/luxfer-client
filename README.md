@@ -5,6 +5,18 @@ This repository contains the whole source code and NetBeans project metadata whi
 
 The client is a part of the "Mystic Wall" installation realized in 2015 by Matúš Buranovský, Adam Heinrich and Jan Husák during the ITT course held by the [Institute of Intermedia](http://iim.cz) at the [Czech Technical University in Prague](http://cvut.cz).
 
+![Screenshot: The configuration mode](img/installation-photo.png)
+
+## About
+
+The client is used to project N-by-M rectangular cell matrix on a flat surface. In an original installation the surface was a glass brick wall which required precise mapping of the cells.
+
+![Screenshot: The configuration mode](img/projection-mode.png)
+
+To map cells on a glass brick wall (an to compensate beamer's pose) the application uses a projective transformation. The transformation is determined by position of four corner points. This can be adjusted in the configuration mode:
+
+![Screenshot: The configuration mode](img/configuration-mode.png)
+
 ## How to install on Raspberry Pi
 
 1. Get a fresh installation of the [Raspian](http://downloads.raspberrypi.org/raspbian_latest) distribution
